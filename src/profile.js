@@ -1,4 +1,3 @@
-
 function getProfile(userID) {
   var data = userInfo(userID);
   var credits = data.total_credits;
@@ -60,6 +59,12 @@ function getProfileKeyboard(keyboardNumber) {
               callback_data: 'toggleProfile-' + 3,
             },
           ],
+          [
+            {
+              text: 'Back',
+              callback_data: 'back-',
+            },
+          ],
         ]
   var secondKeyboard = [
           [
@@ -71,7 +76,13 @@ function getProfileKeyboard(keyboardNumber) {
               text: "Requests I've Taken",
               callback_data: 'toggleProfile-' + 3,
             },
-          ]
+          ],
+          [
+            {
+              text: 'Back',
+              callback_data: 'back-',
+            },
+          ],
   ]
   var thirdKeyboard = [
           [
@@ -82,6 +93,12 @@ function getProfileKeyboard(keyboardNumber) {
             {
               text: 'My Requests Made',
               callback_data: 'toggleProfile-' + 2,
+            },
+          ],
+          [
+            {
+              text: 'Back',
+              callback_data: 'back-',
             },
           ],
   ]

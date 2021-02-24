@@ -31,4 +31,3 @@ function inc(simp, requestor) {
   var old = parseInt(Track.getRange(simp, requestor).getValues());
   Track.getRange(simp, requestor).setValue(old + 1);
 }  
-

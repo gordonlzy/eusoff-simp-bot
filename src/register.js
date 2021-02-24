@@ -16,9 +16,6 @@ function register(userID) {
         user.name +
         '!!' +
         '\n\n' +
-        'Your room number is ' +
-        user.room +
-        '\n\n' +
         "/profile - To check your profile details  \n\n" +
         "/view - To view, take or simp for active requests  \n" + 
         "/make_request - To make a request \n" + 

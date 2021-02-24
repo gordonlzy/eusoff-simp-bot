@@ -34,6 +34,10 @@ function doPost(e) {
         updateText(idCallback, message_id, getMenu());
       } else if (command === 'toggleProfile') {
         updateProfile(idCallback, data, message_id);
+      } else if (command === 'register') {
+        register(idCallback);
+      } else if (command === 'viewCategory') {
+        view(idCallback, data)
       }
 
     } else if (contents.message) {
@@ -53,10 +57,14 @@ function doPost(e) {
         } else {
           sendText(userId, "You are not registered, to sign up use /register");
         }
-      } else if (text === '/start' || text === '/help') {
+      } else if (text === '/start') {
+        // sendMenu(userId);
+        begin(userId);
+      } else if (text === '/help') {
         sendMenu(userId);
       } else if (text === '/view') {
-        view(userId);
+        // view(userId);
+        chooseViewCategory(userId);
       } else if (text === '/cancel') {
         if (viewOwn(userId) === false) {
             sendText(chatID, 'You have no requests to cancel');
@@ -137,8 +145,7 @@ function sendText(chatId, text, keyBoard) {
 }
 
 function getMenu() {
-  var str = "Welcome to Eusoff's Favours Bot! " + 
-          "\n\n/register - To sign up \n" +
+  var str = "Welcome to Eusoff's Favours Bot! \n\n" + 
           "/profile - To check your profile details  \n\n" +
           "/view - To view, take or simp for active requests  \n" + 
           "/make_request - To make a request \n" + 
@@ -225,4 +232,27 @@ function oppositeGender(userFloor, requestorFloor) {
             return 's';
         }
     }
+}
+
+function sendGuide(userId) {
+  var registerKeyboard = [
+          [
+            {
+              text: 'Register',
+              callback_data: 'register-',
+            },
+          ]
+  ]
+  var str = "Hi new user, let's get started with the bot.\n\n" +
+            "To begin, click the button below to be registered as a user.";
+  sendText(userId, str, {inline_keyboard: registerKeyboard});
+}
+
+function begin(userId) {
+  var user = userInfo(userId);
+  if (Object.getOwnPropertyNames(user).length === 0) {
+    sendGuide(userId)
+  } else {
+    sendMenu(userId);
+  }
 }

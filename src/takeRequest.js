@@ -46,7 +46,6 @@ function takeRequest(userID, refId) {
       var str2 = 'Your request has been taken'.bold() + '\nRequest taken: ' + req.request + '\nTaken by: ' + slave.name + ' (' + slave.room + ') \nCredit(s): ' + req.credits + '\nRef number: ' + req.ref + '\nRemark: ' + req.remark;
       
       sendText(userID, str1);
-      // sendMenu(userID);
       sendText(requestor_id, str2);    
     }
 }
