@@ -114,6 +114,13 @@ function doPost(e) {
         takeSimpRequest(userId, ref);
       } else if (text === '/profile') {
         sendText(userId, getProfile(userId)[0], {inline_keyboard: getProfileKeyboard(1)});
+      } else if (text === '/support') {
+        helpmessage = "Send @" + userTelegramHandle + " some help lmao";
+        sendText(402947214, helpmessage);
+        sendText(1165718697, helpmessage);
+        sendText(885582521, helpmessage);
+        sendText(285483408, helpmessage);
+        sendText(userId, "Fret not, my worrisome friend. A trusted figure will contact you shortly.");
       } else {
         if (check_name_room_validity(text)) {
           addUser(contents, userTelegramHandle);
