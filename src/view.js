@@ -46,7 +46,7 @@ function updateView(userID, data, message_id) {
   ]
   var str = getTestView(index);
   if (str === 'Showing Active Requests\n\n') {
-    updateText(userID, message_id, "That's all the active requests!", { inline_keyboard: finalkeyboard });
+    updateText(userID, message_id, "There are no active requests to take up!", { inline_keyboard: finalkeyboard });
   } else if (index === "0") {
     updateText(userID, message_id, getTestView(index), {inline_keyboard: firstkeyboard});
   } else {    
@@ -56,7 +56,7 @@ function updateView(userID, data, message_id) {
 
 function getTestView(index) {
     var rangeValues = requestRange();
-    var str = 'Showing Active Requests\n\n';
+    var str = 'Showing Active Requests\n\n'.bold();
     var count = 0;
     var max = 3;
 

@@ -66,7 +66,7 @@ function doPost(e) {
         }
       } else if (text === '/take_request') {
         if (processRequest(userId) === false) {
-          sendText(chatID, 'You have no requests to take');
+          sendText(chatID, 'There are no active requests to take up!');
         } else {
           sendText(chatID, 'Which request do you want to take?', processRequest(userId));
         }
@@ -137,19 +137,16 @@ function sendText(chatId, text, keyBoard) {
 }
 
 function getMenu() {
-  var str = "Welcome to Eusoff's Favours Bot! \n" +
-          "To sign up /register \n" +
-          "To view profile /profile \n" +
-          "To view active requests /view \n" + 
-          "To delete your current requests /cancel\n" +
-          "To mark a request as complete /complete\n\n" +
-          "To make request /make_request\n" + 
-          "To take request /take_request\n" + 
-          "To simp /simp\n" +
-          "To view the leaderboards /leaderboard\n\n" +
-          "To view the simp leaderboards /simp_leaderboard\n" + 
-          "To subscribe to favour updates /subscribe\n" + 
-          "To unsubscribe from updates /unsubscribe\n";
+  var str = "Welcome to Eusoff's Favours Bot! " + 
+          "\n\n/register - To sign up \n" +
+          "/profile - To check your profile details  \n\n" +
+          "/view - To view, take or simp for active requests  \n" + 
+          "/make_request - To make a request \n" + 
+          "/complete - To mark your request as complete \n" +
+          "/cancel - To delete your current requests that are not taken \n\n" +
+          "/leaderboard - To view the leaderboards \n\n" +
+          "/subscribe - To get notified of new favours \n" + 
+          "/unsubscribe - To unsubscribe from updates \n";
   return str;
 }
 
