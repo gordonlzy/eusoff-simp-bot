@@ -44,6 +44,12 @@ function doPost(e) {
       var chatID = contents.message.chat.id;
       var text = contents.message.text;
       var userId = contents.message.from.id;
+      var userTelegramHandle = contents.message.chat.username;
+      
+      // update telegram handle if user exists
+      if (Object.getOwnPropertyNames(userInfo(userId)).length !== 0) {
+        updateTeleHandle(userId, userTelegramHandle);
+      }
       
       if (text === '/register') {
         register(userId);
@@ -110,7 +116,7 @@ function doPost(e) {
         sendText(userId, getProfile(userId)[0], {inline_keyboard: getProfileKeyboard(1)});
       } else {
         if (check_name_room_validity(text)) {
-          addUser(contents);
+          addUser(contents, userTelegramHandle);
         } else if (userInfo(userId).ongoing === 1) {
           broadcast(userId, text);
         } else {
