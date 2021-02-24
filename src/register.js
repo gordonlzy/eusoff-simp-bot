@@ -28,13 +28,15 @@ function register(userID) {
     sendText(userID, text);
 }
 
-function addUser(data) {  
+function addUser(data, userTelegramHandle) {  
     var raw_user_data = data.message.text;
     var user_data_arr = raw_user_data.split(" ");
 
     var name = user_data_arr[0];
     var room = user_data_arr[1];
     var id = data.message.chat.id;
+    var telegramhandle = "@" + userTelegramHandle;
+
   
     newUser(id, name, room);
     addUserToTrack(id);
@@ -62,4 +64,13 @@ function addUser(data) {
         "/unsubscribe - To unsubscribe from updates \n";
   
       sendText(id, text);
+}
+
+function updateTeleHandle(userId, userTelegramHandle) {
+  var user = userInfo(userId);
+
+  // if user's telegram handle in the sheets is "fix" or empty, fill it in
+  if (user.telehandle === "fix" || user.telehandle.length === 0) {
+    setUserTeleHandle(userId, userTelegramHandle);
+  }
 }
