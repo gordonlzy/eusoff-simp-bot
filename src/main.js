@@ -38,12 +38,20 @@ function doPost(e) {
         register(idCallback);
       } else if (command === 'viewCategory') {
         view(idCallback, data)
+      } else if (command === "toggleTut") {
+        updateTutorial(idCallback, data, message_id);
       }
 
     } else if (contents.message) {
       var chatID = contents.message.chat.id;
       var text = contents.message.text;
       var userId = contents.message.from.id;
+      var userTelegramHandle = contents.message.chat.username;
+      
+      // update telegram handle if user exists
+      if (Object.getOwnPropertyNames(userInfo(userId)).length !== 0) {
+        updateTeleHandle(userId, userTelegramHandle);
+      }
       
       if (text === '/register') {
         register(userId);
@@ -61,7 +69,8 @@ function doPost(e) {
         // sendMenu(userId);
         begin(userId);
       } else if (text === '/help') {
-        sendMenu(userId);
+        // sendMenu(userId);
+        sendTutorial(userId);
       } else if (text === '/view') {
         // view(userId);
         chooseViewCategory(userId);
@@ -108,9 +117,16 @@ function doPost(e) {
         takeSimpRequest(userId, ref);
       } else if (text === '/profile') {
         sendText(userId, getProfile(userId)[0], {inline_keyboard: getProfileKeyboard(1)});
+      } else if (text === '/support') {
+        var helpmessage = "Send @" + userTelegramHandle + " some help lmao";
+        sendText(402947214, helpmessage);
+        sendText(1165718697, helpmessage);
+        sendText(885582521, helpmessage);
+        sendText(285483408, helpmessage);
+        sendText(userId, "Fret not, my worrisome friend. A trusted figure will contact you shortly.");
       } else {
         if (check_name_room_validity(text)) {
-          addUser(contents);
+          addUser(contents, userTelegramHandle);
         } else if (userInfo(userId).ongoing === 1) {
           broadcast(userId, text);
         } else {
@@ -148,12 +164,14 @@ function getMenu() {
   var str = "Welcome to Eusoff's Favours Bot! \n\n" + 
           "/profile - To check your profile details  \n\n" +
           "/view - To view, take or simp for active requests  \n" + 
-          "/make_request - To make a request \n" + 
-          "/complete - To mark your request as complete \n" +
-          "/cancel - To delete your current requests that are not taken \n\n" +
-          "/leaderboard - To view the leaderboards \n\n" +
+          "/make_request - To make a request \n\n" + 
+          "/leaderboard - To view the leaderboards \n" +
           "/subscribe - To get notified of new favours \n" + 
-          "/unsubscribe - To unsubscribe from updates \n";
+          "/unsubscribe - To unsubscribe from updates \n\n" + 
+          "/complete - To mark your request as complete \n" +
+          "/cancel - To delete your current requests that are not taken \n\n" + 
+          "/support - To report a bug/receive assistance \n" +
+          "/help - To read the tutorial again.";
   return str;
 }
 
