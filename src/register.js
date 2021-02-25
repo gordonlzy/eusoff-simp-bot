@@ -38,7 +38,7 @@ function addUser(data, userTelegramHandle) {
     var telegramhandle = "@" + userTelegramHandle;
 
   
-    newUser(id, name, room);
+    newUser(id, name, room, telegramhandle);
     addUserToTrack(id);
   
     var text =
@@ -70,7 +70,7 @@ function updateTeleHandle(userId, userTelegramHandle) {
   var user = userInfo(userId);
 
   // if user's telegram handle in the sheets is "fix" or empty, fill it in
-  if (user.telehandle === "fix" || user.telehandle.length === 0) {
+  if (user.tele === "fix" || user.tele.length === 0) {
     setUserTeleHandle(userId, userTelegramHandle);
   }
 }

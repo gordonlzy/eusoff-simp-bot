@@ -115,7 +115,7 @@ function doPost(e) {
       } else if (text === '/profile') {
         sendText(userId, getProfile(userId)[0], {inline_keyboard: getProfileKeyboard(1)});
       } else if (text === '/support') {
-        helpmessage = "Send @" + userTelegramHandle + " some help lmao";
+        var helpmessage = "Send @" + userTelegramHandle + " some help lmao";
         sendText(402947214, helpmessage);
         sendText(1165718697, helpmessage);
         sendText(885582521, helpmessage);
