@@ -38,7 +38,7 @@ function addUser(data, userTelegramHandle) {
     var telegramhandle = "@" + userTelegramHandle;
 
   
-    newUser(id, name, room);
+    newUser(id, name, room, telegramhandle);
     addUserToTrack(id);
   
     var text =
