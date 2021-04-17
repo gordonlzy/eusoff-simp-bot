@@ -73,7 +73,7 @@ function getTestView(index, category) {
                 : "Showing All Active " + category + " Requests\n\n";
     str = str.bold();
     var count = 0;
-    var max = 3;
+    var max = 5;
 
     for (i = 0; i < requestLastRow() - 1; i++) {
       var req = requestInfo(rangeValues[i][0]);

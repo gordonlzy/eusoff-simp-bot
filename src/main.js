@@ -70,7 +70,7 @@ function doPost(e) {
         begin(userId);
       } else if (text === '/help') {
         // sendMenu(userId);
-        sendTutorial(userId);
+        sendTutorial(userId)
       } else if (text === '/view') {
         // view(userId);
         chooseViewCategory(userId);
@@ -171,7 +171,7 @@ function getMenu() {
           "/complete - To mark your request as complete \n" +
           "/cancel - To delete your current requests that are not taken \n\n" + 
           "/support - To report a bug/receive assistance \n" +
-          "/help - To read the tutorial again.";
+          "/help - To read the tutorial again."
   return str;
 }
 

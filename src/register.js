@@ -66,3 +66,12 @@ function updateTeleHandle(userId, userTelegramHandle) {
     setUserTeleHandle(userId, userTelegramHandle);
   }
 }
+
+function updateTeleHandle(userId, userTelegramHandle) {
+  var user = userInfo(userId);
+
+  // if user's telegram handle in the sheets is "fix" or empty, fill it in
+  if (user.tele === "fix" || user.tele.length === 0) {
+    setUserTeleHandle(userId, userTelegramHandle);
+  }
+}
